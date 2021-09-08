@@ -1,6 +1,7 @@
 FROM osrf/ros:kinetic-desktop-full
+
 RUN apt-get update && apt-get install -y \
-    	python-setuptools \
+	python-setuptools \
 	python-rosinstall \
 	ipython \
 	libeigen3-dev \
@@ -23,18 +24,19 @@ RUN apt-get update && apt-get install -y \
 	python-catkin-tools \
 	libv4l-dev \
 	wget \
-	autoconf automake 
+	autoconf \
+	automake
 
-RUN python -m pip install --upgrade pip; python -m pip install python-igraph --upgrade
+#RUN python -m pip install --upgrade pip<=20.3.4; python -m pip install python-igraph --upgrade
 ENV KALIBR_WORKSPACE /kalibr_workspace
 
-RUN 	mkdir -p $KALIBR_WORKSPACE/src &&\
+RUN mkdir -p $KALIBR_WORKSPACE/src &&\
 	cd $KALIBR_WORKSPACE &&\
 	catkin init &&\
 	catkin config --extend /opt/ros/kinetic &&\
 	catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
 
-RUN 	cd $KALIBR_WORKSPACE/src &&\
+RUN cd $KALIBR_WORKSPACE/src &&\
 	git clone https://github.com/stereolabs/Kalibr.git
 
 RUN	cd $KALIBR_WORKSPACE &&\
