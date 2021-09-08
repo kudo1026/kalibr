@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
 	autoconf \
 	automake
 
-#RUN python -m pip install --upgrade pip<=20.3.4; python -m pip install python-igraph --upgrade
+RUN pip install pip==20.0.2; pip install python-igraph==0.8.0
 ENV KALIBR_WORKSPACE /kalibr_workspace
 
 RUN mkdir -p $KALIBR_WORKSPACE/src &&\
